@@ -39,10 +39,9 @@ const Navbar = () => {
           {/* Logo */}
           <Link 
             to="/"
-            className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img src={logo} alt="CoreLogic Systems" className="h-10 w-auto" />
-            <span className="font-semibold text-lg hidden sm:block">CoreLogic Systems</span>
           </Link>
 
           {/* Desktop Navigation */}
