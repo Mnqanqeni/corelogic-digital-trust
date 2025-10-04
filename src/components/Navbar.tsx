@@ -2,17 +2,25 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
-  const navItems = [
+  const scrollNavItems = [
     { name: "Home", id: "hero" },
     { name: "About", id: "about" },
     { name: "Services", id: "services" },
     { name: "Portfolio", id: "portfolio" },
     { name: "Testimonials", id: "testimonials" },
     { name: "Contact", id: "contact" },
+  ];
+
+  const pageNavItems = [
+    { name: "Blogs", path: "/blogs" },
+    { name: "Careers", path: "/careers" },
   ];
 
   const scrollToSection = (id: string) => {
@@ -29,17 +37,17 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <button 
-            onClick={() => scrollToSection("hero")}
+          <Link 
+            to="/"
             className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
           >
             <img src={logo} alt="CoreLogic Systems" className="h-10 w-auto" />
             <span className="font-semibold text-lg hidden sm:block">CoreLogic Systems</span>
-          </button>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => (
+            {isHomePage && scrollNavItems.map((item) => (
               <Button
                 key={item.id}
                 variant="ghost"
@@ -47,6 +55,16 @@ const Navbar = () => {
                 className="text-foreground hover:text-primary hover:bg-primary/10"
               >
                 {item.name}
+              </Button>
+            ))}
+            {pageNavItems.map((item) => (
+              <Button
+                key={item.path}
+                variant="ghost"
+                asChild
+                className="text-foreground hover:text-primary hover:bg-primary/10"
+              >
+                <Link to={item.path}>{item.name}</Link>
               </Button>
             ))}
           </div>
@@ -64,7 +82,7 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden py-4 space-y-2 animate-fade-in">
-            {navItems.map((item) => (
+            {isHomePage && scrollNavItems.map((item) => (
               <Button
                 key={item.id}
                 variant="ghost"
@@ -72,6 +90,17 @@ const Navbar = () => {
                 className="w-full justify-start text-foreground hover:text-primary hover:bg-primary/10"
               >
                 {item.name}
+              </Button>
+            ))}
+            {pageNavItems.map((item) => (
+              <Button
+                key={item.path}
+                variant="ghost"
+                asChild
+                onClick={() => setIsOpen(false)}
+                className="w-full justify-start text-foreground hover:text-primary hover:bg-primary/10"
+              >
+                <Link to={item.path}>{item.name}</Link>
               </Button>
             ))}
           </div>
