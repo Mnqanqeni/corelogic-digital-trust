@@ -41,7 +41,7 @@ const Navbar = () => {
             to="/"
             className="flex items-center hover:opacity-80 transition-opacity"
           >
-            <img src={logo} alt="CoreLogic Systems" className="h-24 w-auto" />
+            <img src={logo} alt="CoreLogic Systems" className="h-12 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
