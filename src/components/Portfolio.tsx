@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ridematePreview from "@/assets/ridemate-preview.jpg";
-import lafamilyPreview from "@/assets/lafamily-preview.jpg";
+import lafamilyPreview from "@/assets/lafamily-preview.png";
 
 const Portfolio = () => {
   const projects = [
