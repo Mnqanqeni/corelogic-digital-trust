@@ -9,13 +9,15 @@ const Portfolio = () => {
       title: "RideMate - Carpool App",
       description: "A smart platform connecting commuters for safe, affordable, and eco-friendly travel. Features real-time matching, route optimization, and secure payment integration.",
       image: ridematePreview,
-      tags: ["Mobile App", "IoT", "Real-time"]
+      tags: ["Mobile App", "IoT", "Real-time"],
+      link: undefined
     },
     {
       title: "La Family Tour",
       description: "A digital platform designed for family-oriented travel experiences, showcasing tour packages, bookings, and destination information in a user-friendly interface.",
       image: lafamilyPreview,
-      tags: ["Web Platform", "E-commerce", "Booking System"]
+      tags: ["Web Platform", "E-commerce", "Booking System"],
+      link: "https://lafamilytour.co.za/"
     }
   ];
 
@@ -33,37 +35,43 @@ const Portfolio = () => {
         </div>
         
         <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <Card 
-              key={index} 
-              className="group overflow-hidden hover:shadow-2xl transition-all duration-300 border-border hover:border-primary/50"
-            >
-              <div className="overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="text-2xl group-hover:text-primary transition-colors">
-                  {project.title}
-                </CardTitle>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <Badge key={tagIndex} variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base leading-relaxed text-foreground/70">
-                  {project.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
-          ))}
+          {projects.map((project, index) => {
+            const CardWrapper = project.link ? 'a' : 'div';
+            const cardProps = project.link ? { href: project.link, target: "_blank", rel: "noopener noreferrer" } : {};
+            
+            return (
+              <CardWrapper key={index} {...cardProps} className={project.link ? "block" : ""}>
+                <Card 
+                  className="group overflow-hidden hover:shadow-2xl transition-all duration-300 border-border hover:border-primary/50 h-full"
+                >
+                  <div className="overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <CardHeader>
+                    <CardTitle className="text-2xl group-hover:text-primary transition-colors">
+                      {project.title}
+                    </CardTitle>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {project.tags.map((tag, tagIndex) => (
+                        <Badge key={tagIndex} variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base leading-relaxed text-foreground/70">
+                      {project.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </CardWrapper>
+            );
+          })}
         </div>
       </div>
     </section>
