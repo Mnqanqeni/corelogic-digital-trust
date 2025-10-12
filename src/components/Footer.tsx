@@ -1,4 +1,4 @@
-import { Linkedin, Github, Twitter } from "lucide-react";
+import { Linkedin, Github, X, Facebook, Instagram, Youtube } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -15,7 +15,10 @@ const Footer = () => {
   const socialLinks = [
     { icon: Linkedin, href: "#", label: "LinkedIn" },
     { icon: Github, href: "#", label: "GitHub" },
-    { icon: Twitter, href: "#", label: "Twitter/X" },
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: X, href: "#", label: "X" },
+    { icon: Youtube, href: "#", label: "YouTube" },
   ];
 
   const scrollToSection = (href: string) => {
